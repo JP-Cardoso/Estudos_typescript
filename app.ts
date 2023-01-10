@@ -7,7 +7,7 @@ class Carro {
 
     private modelo: string;
     private numeroDePortas: number;
-    private velocidade: number = 0
+    private velocidade: number = 0;
 
     public acelerar(): void {
         this.velocidade = this.velocidade + 10;
@@ -19,25 +19,26 @@ class Carro {
 
     public velocidadeAtual(): number {
 
-        return this.velocidade
+        return this.velocidade;
     };
 
 }
 
 class Concessionaria {
 
-    constructor (endereco:string) {
+    constructor (endereco:string, listaDeCarros: Carro[]) {
         this.endereco = endereco;
+        this.listaDeCarros = listaDeCarros;
     };
 
     private endereco: string;
-    private listaDeCarros: any;
+    private listaDeCarros: Carro[];
 
     public fornecerEndereco(): string {
         return this.endereco;
     };
 
-    public mostrarListaDeCarros(): any {
+    public mostrarListaDeCarros(): Carro[] {
         return this.listaDeCarros;
     };
 
@@ -60,19 +61,45 @@ class Pessoa {
     };
 
     public dizerCarroPreferido(): string {
-        return this.carroPreferido
+        return this.carroPreferido;
     };
 
-    public comprarCarro(carro: any): void {
-        this.carro = carro
+    public comprarCarro(carro: Carro): void {
+        this.carro = carro;
     }
 
-    public dizerQueCarroTem(): any {
-        return this.carro
+    public dizerQueCarroTem(): Carro {
+        return this.carro;
     };
 
 }
 
-let pessoa = new Pessoa('João', 'Megane');
-console.log(pessoa.dizerCarroPreferido());
+// Criando objetos de carro
+let carroA = new Carro('Veloster', 3);
+let carroB = new Carro('Dodge Journey', 4);
+let carroC = new Carro('C63 Coupe', 2);
 
+//lista de carros da concessionaria
+let listaDeCarros: Carro[] = [carroA,carroB, carroC];
+
+let concessionaria = new Concessionaria('Av Paulist', listaDeCarros); 
+
+//Exibir a lista de carros
+//console.log(concessionaria.mostrarListaDeCarros());
+
+ 
+//Comprar o carro
+
+let cliente = new Pessoa('João','C63 Coupe');
+
+console.log(cliente.dizerCarroPreferido());
+
+concessionaria.mostrarListaDeCarros().map((carro: Carro) => {
+   if(carro['modelo'] == cliente.dizerCarroPreferido()) {
+    
+        //comprar carro
+        cliente.comprarCarro(carro);
+   };    
+});
+
+console.log(cliente.dizerQueCarroTem());
