@@ -1,0 +1,28 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+//import { MotoDao } from './MotoDao';
+//import { CarroDao } from './CarroDao';
+//import { PessoaDao } from './PessoaDao';
+//import { ConcessionariaDao } from "./ConcessionariaDao";
+const Concessionaria_1 = __importDefault(require("./Concessionaria"));
+const Pessoa_1 = __importDefault(require("./Pessoa"));
+const Carro_1 = __importDefault(require("./Carro"));
+const Moto_1 = __importDefault(require("./Moto"));
+const Dao_1 = require("./Dao");
+//let dao: ConcessionariaDao = new ConcessionariaDao();
+let concessionaria = new Concessionaria_1.default('', []);
+//dao.inserir(concessionaria);
+//let dao2: PessoaDao = new PessoaDao();
+let pessoa = new Pessoa_1.default('', '');
+//dao2.atualizar(pessoa);
+//let dao3: CarroDao = new CarroDao();
+let carro = new Carro_1.default('', 0);
+//dao3.inserir(carro);
+//let dao4: MotoDao = new MotoDao();
+let moto = new Moto_1.default();
+//dao4.atualizar(moto);
+let dao4 = new Dao_1.Dao();
+dao4.atualizar(pessoa);
